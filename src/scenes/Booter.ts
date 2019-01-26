@@ -10,6 +10,14 @@ export class Booter extends Phaser.Scene {
 
         this.load.spritesheet('jc', 'src/assets/players1.png', { frameWidth: 64, frameHeight: 96 });
         this.load.spritesheet('mk', 'src/assets/players2.png', { frameWidth: 64, frameHeight: 96 });
+        this.load.image('table', 'src/assets/table.png');
+        this.load.image('chaise', 'src/assets/chaise.png');
+        this.load.image('table_chevet', 'src/assets/table_chevet.png');
+        this.load.image('lit', 'src/assets/lit.png');
+        this.load.image('commode', 'src/assets/commode.png');
+        this.load.image('coffre', 'src/assets/coffre.png');
+        this.load.image('cursor', 'src/assets/cursor.png');
+        this.load.tilemapTiledJSON('map1', 'src/assets/maps/map1.json');
     }
 
     create(): void {
