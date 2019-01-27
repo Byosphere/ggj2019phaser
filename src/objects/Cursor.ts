@@ -18,7 +18,7 @@ export class Cursor extends Phaser.Physics.Arcade.Sprite {
         this.graphics.clear();
         switch (direction) {
             case UP:
-                if (this.y > 0)
+                if (this.y > 128)
                     this.setPosition(this.x, this.y - 32);
                 break;
             case DOWN:

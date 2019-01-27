@@ -31,7 +31,7 @@ export class Level extends Phaser.Scene {
     }
 
     preload(): void {
-
+        this.initAnims();
     }
 
     create(): void {
@@ -40,7 +40,6 @@ export class Level extends Phaser.Scene {
         graphics.fillStyle(0x222222, 1);
         graphics.fillRect(0, 0, 1024, 576);
         this.initGround();
-        this.initAnims();
         this.initToys();
         this.initPlayers();
         this.initCursors();
@@ -84,10 +83,11 @@ export class Level extends Phaser.Scene {
 
     initToys() {
         this.toysGroup = this.physics.add.group();
-        let test = new Toy(this, 600, 256, 'toy1');
-        this.toysGroup.add(test, true);
-        let test2 = new Toy(this, 128, 256, 'toy2');
-        this.toysGroup.add(test2, true);
+        this.map.objects[0].objects.forEach(toyData => {
+            let toy = new Toy(this, toyData.x, toyData.y - 128, 'toy');
+            toy.setOrigin(0, 0);
+            this.toysGroup.add(toy, true);
+        });
     }
 
     initAnims() {
@@ -215,7 +215,7 @@ export class Level extends Phaser.Scene {
             cursor = this.cursor1;
         }
         this.physics.overlap(cursor, this.layer2, (el: any, el2: any) => {
-            if (!el2.collideDown && !el2.collideLeft && !el2.collideRight && !el2.collideUp) {
+            if (!el2.collideDown && !el2.collideLeft && !el2.collideRight && !el2.collideUp && !this.physics.overlap(cursor, this.toysGroup)) {
                 this.tweens.add({
                     targets: toy,
                     props: {
@@ -267,5 +267,13 @@ export class Level extends Phaser.Scene {
 
     getToys(): Phaser.Physics.Arcade.Group {
         return this.toysGroup;
+    }
+
+    restart() {
+        this.scene.restart();
+    }
+
+    pause() {
+        this.scene.pause();
     }
 }

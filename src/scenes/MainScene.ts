@@ -16,9 +16,10 @@ export class MainScene extends Phaser.Scene {
     create(): void {
         this.scene.run('Hud');
         this.scene.run('Level');
+        this.scene.pause('Level');
     }
 
-    update(): void {
+    update() {
 
     }
 }
