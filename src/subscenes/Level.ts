@@ -74,11 +74,11 @@ export class Level extends Phaser.Scene {
         this.physics.add.collider(this.player1, this.layer2);
         this.physics.add.collider(this.player2, this.layer2);
         this.player1.body.width = 52;
-        this.player1.body.height = 82;
-        this.player1.body.setOffset(0, 16);
+        this.player1.body.height = 40;
+        this.player1.body.setOffset(0, 58);
         this.player2.body.width = 52;
-        this.player2.body.height = 82;
-        this.player2.body.setOffset(0, 16);
+        this.player2.body.height = 40;
+        this.player2.body.setOffset(0, 58);
     }
 
     initToys() {
@@ -237,7 +237,7 @@ export class Level extends Phaser.Scene {
         this.layer = this.map.createStaticLayer(0, floor, 0, -96);
         let meubles = this.map.addTilesetImage('meuble');
         this.layer2 = this.map.createStaticLayer(1, meubles, 0, -96);
-        this.layer2.setCollisionBetween(1, 61);
+        this.layer2.setCollisionBetween(1, 70);
 
         // this.layer2.renderDebug(this.add.graphics(), {
         //     tileColor: null, // Non-colliding tiles

@@ -6,7 +6,7 @@ export class Character extends Phaser.Physics.Arcade.Sprite {
     public numPlayer: number;
     public hasToy: Toy | null;
     private inputs: Object = {}
-    private DEFAULT_SPEED: number = 300;
+    private DEFAULT_SPEED: number = 400;
 
     constructor(scene, x, y, texture, numPlayer) {
         super(scene, x, y, texture, 0);
@@ -41,7 +41,7 @@ export class Character extends Phaser.Physics.Arcade.Sprite {
                         break;
 
                     case DOWN:
-                        if (this.body.y <= 480)
+                        if (this.body.y <= 528)
                             this.setVelocityY(this.DEFAULT_SPEED);
                         else
                             this.setVelocityY(0);
