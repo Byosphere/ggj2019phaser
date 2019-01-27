@@ -6,7 +6,7 @@ export class Character extends Phaser.Physics.Arcade.Sprite {
     public numPlayer: number;
     public hasToy: Toy | null;
     private inputs: Object = {}
-    private DEFAULT_SPEED: number = 200;
+    private DEFAULT_SPEED: number = 300;
 
     constructor(scene, x, y, texture, numPlayer) {
         super(scene, x, y, texture, 0);
@@ -16,7 +16,7 @@ export class Character extends Phaser.Physics.Arcade.Sprite {
         this.inputs[LEFT] = false;
         this.inputs[RIGHT] = false;
         this.hasToy = null;
-        this.numPlayer = numPlayer
+        this.numPlayer = numPlayer;
     }
 
     public move(direction: string) {

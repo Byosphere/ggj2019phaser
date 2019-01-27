@@ -13,9 +13,7 @@ export class ControlsManager {
     }
 
     public player1_DOWN(callback: Function) {
-        this.scene.input.keyboard.on('keydown_DOWN', () => {
-            callback();
-        }, this.scene);
+
     }
 
     public player1_RIGHT(callback: Function) {

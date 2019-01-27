@@ -34,8 +34,13 @@ export class Cursor extends Phaser.Physics.Arcade.Sprite {
                     this.setPosition(this.x + 32, this.y);
                 break;
         }
-        this.graphics.lineStyle(2, 0x00ff00, 0.1);
+        this.graphics.lineStyle(2, 0xFFFFFF, 0.1);
         this.graphics.lineBetween(this.character.x, this.character.y, this.x + 16, this.y + 16);
+    }
+
+    public hide() {
+        this.graphics.clear();
+        this.setVisible(false);
     }
 
     public stop(direction) {

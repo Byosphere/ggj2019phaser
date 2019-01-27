@@ -17,6 +17,11 @@ export class Booter extends Phaser.Scene {
         this.load.image('commode', 'src/assets/commode.png');
         this.load.image('coffre', 'src/assets/coffre.png');
         this.load.image('cursor', 'src/assets/cursor.png');
+        this.load.image('momui', 'src/assets/ui/momUI.png');
+        this.load.image('jauge', 'src/assets/ui/timer.png');
+        this.load.image('noms', 'src/assets/ui/nom.png');
+        this.load.image('meuble', 'src/assets/maps/meuble.png');
+        this.load.image('heart', 'src/assets/ui/coeur.png');
         this.load.tilemapTiledJSON('map1', 'src/assets/maps/map1.json');
     }
 

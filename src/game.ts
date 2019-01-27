@@ -12,11 +12,11 @@ let config = {
     height: 768,
     parent: "game",
     type: Phaser.AUTO,
-    input: {gamepad: true},
+    input: { gamepad: true },
     backgroundColor: '#392542',
     disableContextMenu: true,
     renderConfig: { antialias: true, pixelArt: true, roundPixel: true },
-    physics: { default: 'arcade' },
+    physics: { default: 'arcade', arcade: { debug: false } },
     scene: [Booter, MainScene, Level, Hud]
 }
 
