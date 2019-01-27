@@ -84,8 +84,7 @@ export class Level extends Phaser.Scene {
     initToys() {
         this.toysGroup = this.physics.add.group();
         this.map.objects[0].objects.forEach(toyData => {
-            let toy = new Toy(this, toyData.x, toyData.y - 128, 'toy');
-            toy.setOrigin(0, 0);
+            let toy = new Toy(this, toyData.x + 16, toyData.y - 112, 'toy');
             this.toysGroup.add(toy, true);
         });
     }
@@ -200,8 +199,10 @@ export class Level extends Phaser.Scene {
     cancelToy(player: Character) {
         player.hasToy = null;
         if (player.numPlayer) {
+            this.cursor2.initPos();
             this.cursor2.hide();
         } else {
+            this.cursor1.initPos();
             this.cursor1.hide();
         }
     }
@@ -229,12 +230,13 @@ export class Level extends Phaser.Scene {
     }
 
     initGround() {
-        this.map = this.add.tilemap('map1');
+
+        let randomLevel = Math.floor(Math.random() * 17) + 1;
+        this.map = this.add.tilemap('map' + randomLevel);
         let floor = this.map.addTilesetImage('meuble');
         this.layer = this.map.createStaticLayer(0, floor, 0, -96);
         let meubles = this.map.addTilesetImage('meuble');
         this.layer2 = this.map.createStaticLayer(1, meubles, 0, -96);
-
         this.layer2.setCollisionBetween(1, 61);
 
         // this.layer2.renderDebug(this.add.graphics(), {
@@ -247,9 +249,9 @@ export class Level extends Phaser.Scene {
     initCursors() {
         this.cursorsGroup = this.physics.add.group();
 
-        this.cursor1 = new Cursor(this, 768, 288, 'cursor', this.player1);
+        this.cursor1 = new Cursor(this, 768, 352, 'cursor', this.player1);
         this.cursorsGroup.add(this.cursor1, true);
-        this.cursor2 = new Cursor(this, 224, 288, 'cursor', this.player2);
+        this.cursor2 = new Cursor(this, 224, 352, 'cursor', this.player2);
         this.cursorsGroup.add(this.cursor2, true);
         this.cursor1.setVisible(false);
         this.cursor2.setVisible(false);

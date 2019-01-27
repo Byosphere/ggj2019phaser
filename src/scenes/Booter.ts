@@ -25,7 +25,28 @@ export class Booter extends Phaser.Scene {
         this.load.image('noms', 'src/assets/ui/nom.png');
         this.load.image('meuble', 'src/assets/maps/meuble.png');
         this.load.image('heart', 'src/assets/ui/coeur.png');
+        this.load.image('title', 'src/assets/teddys_throwing.png');
+        this.load.spritesheet('loader', 'src/assets/ui/loader.png', { frameWidth: 32, frameHeight: 32 });
         this.load.tilemapTiledJSON('map1', 'src/assets/maps/map1.json');
+        this.load.tilemapTiledJSON('map2', 'src/assets/maps/map2.json');
+        this.load.tilemapTiledJSON('map3', 'src/assets/maps/map3.json');
+        this.load.tilemapTiledJSON('map4', 'src/assets/maps/map4.json');
+        this.load.tilemapTiledJSON('map5', 'src/assets/maps/map5.json');
+        this.load.tilemapTiledJSON('map6', 'src/assets/maps/map6.json');
+        this.load.tilemapTiledJSON('map7', 'src/assets/maps/map7.json');
+        this.load.tilemapTiledJSON('map8', 'src/assets/maps/map8.json');
+        this.load.tilemapTiledJSON('map9', 'src/assets/maps/map9.json');
+        this.load.tilemapTiledJSON('map10', 'src/assets/maps/map10.json');
+        this.load.tilemapTiledJSON('map11', 'src/assets/maps/map11.json');
+        this.load.tilemapTiledJSON('map12', 'src/assets/maps/map12.json');
+        this.load.tilemapTiledJSON('map13', 'src/assets/maps/map13.json');
+        this.load.tilemapTiledJSON('map14', 'src/assets/maps/map14.json');
+        this.load.tilemapTiledJSON('map15', 'src/assets/maps/map15.json');
+        this.load.tilemapTiledJSON('map16', 'src/assets/maps/map16.json');
+        this.load.tilemapTiledJSON('map17', 'src/assets/maps/map17.json');
+
+        this.load.audio('theme', 'src/assets/audio/theme.wav');
+        this.load.audio('mom2', 'src/assets/audio/mom2.mp3');
     }
 
     create(): void {

@@ -43,6 +43,16 @@ export class Cursor extends Phaser.Physics.Arcade.Sprite {
         this.setVisible(false);
     }
 
+    public initPos(): any {
+        if (this.character.numPlayer === 0) {
+            this.x = 768;
+            this.y = 352;
+        } else {
+            this.x = 224;
+            this.y = 352;
+        }
+    }
+
     public stop(direction) {
         //
     }

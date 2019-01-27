@@ -11,6 +11,7 @@ export class Hud extends Phaser.Scene {
     private popupDisplay: number = 0;
     private disableControls: boolean = false;
     private mom: Phaser.GameObjects.Sprite;
+    private music: Phaser.Sound.BaseSound;
 
     constructor() {
         super({ key: "Hud" });
@@ -39,6 +40,9 @@ export class Hud extends Phaser.Scene {
         this.mom = this.add.sprite(512, 176, 'mom');
         this.initMomAnims();
 
+        this.music = this.sound.add('theme');
+        //this.music.play();
+
         this.cover = this.add.graphics();
         this.cover.fillStyle(0x000000, 0.7);
         this.cover.fillRect(0, 0, 1024, 768);
@@ -57,9 +61,9 @@ export class Hud extends Phaser.Scene {
                         if (this.popupDisplay === 3) this.startGame();
                     }
                 } else if (this.popupDisplay >= 5) {
-                    if (this.popupDisplay === 6 || this.popupDisplay === 8) this.endGame();
                     this.popupDisplay++;
                     this.popup.setFrame(this.popupDisplay);
+                    if (this.popupDisplay === 7 || this.popupDisplay === 9) this.endGame();
                 } else {
                     if (button.index === 1) {
                         this.startGame();
@@ -84,10 +88,11 @@ export class Hud extends Phaser.Scene {
     }
 
     pauseGame(winner: number): any {
-        //this.levelScene.pause();
+
         this.disableControls = false;
         if (!this.lifeP1Group.length || !this.lifeP2Group.length) {
-            this.popupDisplay = winner ? 5 : 7;
+            console.log(this.lifeP1Group.length, this.lifeP2Group.length);
+            this.popupDisplay = this.lifeP1Group.length ? 5 : 7;
             this.popup.setFrame(this.popupDisplay);
             this.popup.setVisible(true);
             this.cover.setVisible(true);
@@ -108,6 +113,7 @@ export class Hud extends Phaser.Scene {
 
     newGame() {
         this.levelScene.restart();
+        this.music.play();
         this.momUi.setPosition(32, 50);
         this.gameInProgress = true;
     }
@@ -133,6 +139,7 @@ export class Hud extends Phaser.Scene {
     }
 
     animMom(victim: number) {
+        this.music.stop();
         this.levelScene.pause();
         let animNum = 0;
         this.mom.on('animationcomplete', () => {
@@ -162,12 +169,18 @@ export class Hud extends Phaser.Scene {
                     }, 500);
                     break;
                 case 2:
+                    momSound.stop();
+                    momSound.destroy();
                     this.mom.removeAllListeners('animationcomplete');
                     this.removeHeart(victim);
                     break;
             }
         }, this);
         this.mom.anims.play('mom_open');
+        let momSound = this.sound.add('mom2');
+        setTimeout(() => {
+            momSound.play();
+        }, 1200);
     }
 
     update() {
@@ -185,16 +198,18 @@ export class Hud extends Phaser.Scene {
     initGame() {
         this.popupDisplay = 0;
 
-        var i = 0;
+        var i = this.lifeP1Group.length;
         while (this.lifeP1Group.length < 3) {
             this.lifeP1Group.push(this.add.image(250 + (35 * i), 720, 'heart'));
             i++;
         }
-        i = 0;
+        i = this.lifeP2Group.length;
         while (this.lifeP2Group.length < 3) {
             this.lifeP2Group.push(this.add.image(770 + (35 * i), 720, 'heart'));
             i++;
         }
+
+        this.popup.setFrame(0);
         this.popup.setVisible(true);
         this.cover.setVisible(true);
         this.momUi.setPosition(32, 50);
