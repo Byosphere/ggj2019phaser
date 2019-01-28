@@ -73,12 +73,12 @@ export class Level extends Phaser.Scene {
         this.playersGroup.add(this.player2, true);
         this.physics.add.collider(this.player1, this.layer2);
         this.physics.add.collider(this.player2, this.layer2);
-        this.player1.body.width = 52;
+        this.player1.body.width = 40;
         this.player1.body.height = 40;
-        this.player1.body.setOffset(0, 58);
-        this.player2.body.width = 52;
+        this.player1.body.setOffset(12, 58);
+        this.player2.body.width = 40;
         this.player2.body.height = 40;
-        this.player2.body.setOffset(0, 58);
+        this.player2.body.setOffset(12, 58);
     }
 
     initToys() {
